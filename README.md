@@ -24,6 +24,13 @@ Send a specified amount to a given address.
 import asyncio
 import upowpy as upow
 
+KEY = "hexKey"
+TO = "wallet_address"
+VOTE_TO = "wallet_address"
+REVOKE_FROM = "wallet_address"
+AMOUNT = "1"
+VOTING_RANGE = "10"
+
 async def send_transaction():
     try:
         transaction_hash = await upow.send_transaction(KEY, TO, AMOUNT)
