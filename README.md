@@ -114,4 +114,60 @@ async def main():
 asyncio.run(main())
 ```
 
+## Error Handling
+
+The `upowpy` library can raise several exceptions during its operation. Below is a list of the most common exceptions you might encounter, along with their descriptions and suggested actions to take if you encounter them:
+
+### Transaction Errors
+
+- **Double Spend Inside Same Transaction**: Attempt to spend the same resource more than once within a single transaction. **Action**: Ensure each output is only used once per transaction.
+- **Double Spend**: Attempt to spend the same resource more than once across multiple transactions. **Action**: Verify and manage output spend status properly before initiating a transaction.
+
+### Staking Errors
+
+- **Already Staked**: Attempt to stake when already staked. **Action**: Check stake status before attempting to stake again.
+- **Already Staked. Transaction is in Pending**: Your staking transaction is still being processed. **Action**: Wait for the transaction to complete before making another staking attempt.
+
+### Voting Errors
+
+- **Delegate Voting Power Bug**: There is an issue with how voting power is calculated or assigned. **Action**: Ensure the voting power calculations align with the current rules.
+- **Delegate Already Have Voting Power**: Attempt to delegate voting power when it's already assigned. **Action**: Check the current voting power before assigning.
+- **Delegate Doesn't Have Voting Power**: Attempt to revoke or use voting power that hasn't been delegated. **Action**: Ensure that voting power is assigned before using it.
+
+### Validator Errors
+
+- **Validator Already Registered**: Attempt to register as a validator when already registered. **Action**: Verify registration status before attempting to register.
+- **Validator Registration Amount is Not Correct**: The amount provided for validator registration does not meet the required threshold. **Action**: Ensure the correct amount is sent for registration.
+
+### Inode Errors
+
+- **Already Registered as an Inode**: Attempt to register as an inode when already registered. **Action**: Verify inode registration status before attempting to register again.
+- **This Address is an Active Inode. Cannot De-register**: Attempt to deregister an active inode. **Action**: Ensure the inode is inactive before attempting to deregister.
+
+### General Errors
+
+- **Invalid Outputs**: The outputs of a transaction are invalid. **Action**: Review and correct the outputs of your transaction.
+- **We Are Not the Federal Reserve**: The input amount is less than the output amount. **Action**: Ensure that the inputs cover all outputs and transaction fees.
+
+### Signature Errors
+
+- **Signature Not Valid**: The transaction signature is not valid. **Action**: Ensure that the transaction is signed correctly with a valid private key.
+- **Voter Signature Not Valid**: The signature for a voting action is invalid. **Action**: Verify that the voting transaction is signed correctly.
+
+### Network Errors
+
+- **Transaction Not Pushed**: The transaction could not be pushed to the network. **Action**: Check network status and retry the transaction.
+- **URI Too Long for URL**: The URI constructed for a network request is too long. **Action**: Reduce the size of the request.
+
+### UTXO Constraints
+
+- **Too Many Inputs**: The number of inputs in a single transaction exceeds the maximum allowed limit.
+
+  - **Error Message**: "You can spend max 255 inputs in a single transaction, not {number_of_inputs}"
+  - **Action**: Reduce the number of inputs to 255 or fewer before attempting the transaction.
+
+- **Too Many Outputs**: The number of outputs in a single transaction exceeds the maximum allowed limit.
+  - **Error Message**: "You can have max 255 outputs in a single transaction, not {number_of_outputs}"
+  - **Action**: Reduce the number of outputs to 255 or fewer before attempting the transaction.
+
 ---
