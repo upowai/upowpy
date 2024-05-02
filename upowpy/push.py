@@ -59,8 +59,8 @@ async def stake_transaction(private_key_hex, amount):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Error during staking transaction: {e}")
-        raise e
+
+        raise
 
 
 async def unstake_transaction(private_key_hex):
@@ -73,7 +73,7 @@ async def unstake_transaction(private_key_hex):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Failed to unstake: {e}")
+
         raise
 
 
@@ -87,7 +87,7 @@ async def register_inode_transaction(private_key_hex):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Failed to register inode: {e}")
+
         raise
 
 
@@ -101,7 +101,7 @@ async def deregister_inode_transaction(private_key_hex):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Failed to deregister inode: {e}")
+
         raise
 
 
@@ -115,7 +115,7 @@ async def register_validator_transaction(private_key_hex):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Failed to register validator: {e}")
+
         raise
 
 
@@ -131,7 +131,7 @@ async def vote_transaction(private_key_hex, voting_range, recipient):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Failed to process vote: {e}")
+
         raise
 
 
@@ -145,5 +145,5 @@ async def revoke_transaction(private_key_hex, revoke_from):
         else:
             raise Exception(error_message)
     except Exception as e:
-        logging.error(f"Failed to revoke: {e}")
+
         raise
