@@ -1,4 +1,4 @@
-# upowwalletpy/__init__.py
+# upowpy/__init__.py
 from .push import (
     send_transaction,
     stake_transaction,

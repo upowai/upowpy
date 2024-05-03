@@ -23,7 +23,9 @@ async def push_tx(tx, wallet_utils: Utils):
         return str(e), None
 
 
-async def send_transaction(private_key_hex, recipients, amounts, message=None):
+async def send_transaction(
+    wallet_utils: Utils, private_key_hex, recipients, amounts, message=None
+):
     private_key = int(private_key_hex, 16)
     recipients_list = recipients.split(",")
     amounts_list = amounts.split(",")
@@ -49,7 +51,7 @@ async def send_transaction(private_key_hex, recipients, amounts, message=None):
         raise Exception(error_message)
 
 
-async def stake_transaction(private_key_hex, amount):
+async def stake_transaction(wallet_utils: Utils, private_key_hex, amount):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_stake_transaction(private_key, amount)
@@ -63,7 +65,7 @@ async def stake_transaction(private_key_hex, amount):
         raise
 
 
-async def unstake_transaction(private_key_hex):
+async def unstake_transaction(wallet_utils: Utils, private_key_hex):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_unstake_transaction(private_key)
@@ -77,7 +79,7 @@ async def unstake_transaction(private_key_hex):
         raise
 
 
-async def register_inode_transaction(private_key_hex):
+async def register_inode_transaction(wallet_utils: Utils, private_key_hex):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_inode_registration_transaction(private_key)
@@ -91,7 +93,7 @@ async def register_inode_transaction(private_key_hex):
         raise
 
 
-async def deregister_inode_transaction(private_key_hex):
+async def deregister_inode_transaction(wallet_utils: Utils, private_key_hex):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_inode_de_registration_transaction(private_key)
@@ -105,7 +107,7 @@ async def deregister_inode_transaction(private_key_hex):
         raise
 
 
-async def register_validator_transaction(private_key_hex):
+async def register_validator_transaction(wallet_utils: Utils, private_key_hex):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_validator_registration_transaction(private_key)
@@ -119,7 +121,9 @@ async def register_validator_transaction(private_key_hex):
         raise
 
 
-async def vote_transaction(private_key_hex, voting_range, recipient):
+async def vote_transaction(
+    wallet_utils: Utils, private_key_hex, voting_range, recipient
+):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_voting_transaction(
@@ -135,7 +139,7 @@ async def vote_transaction(private_key_hex, voting_range, recipient):
         raise
 
 
-async def revoke_transaction(private_key_hex, revoke_from):
+async def revoke_transaction(wallet_utils: Utils, private_key_hex, revoke_from):
     try:
         private_key = int(private_key_hex, 16)
         tx = await wallet_utils.create_revoke_transaction(private_key, revoke_from)

@@ -23,6 +23,10 @@ Send a specified amount to a given address.
 ```python
 import asyncio
 import upowpy as upow
+import upowpy.utils as upow_utils
+
+utils_instance = upow_utils.Utils()
+utils_instance.set_node_url("https://api.upow.ai")
 
 KEY = "hexKey"
 TO = "wallet_address"
@@ -33,7 +37,7 @@ VOTING_RANGE = "10"
 
 async def send_transaction():
     try:
-        transaction_hash = await upow.send_transaction(KEY, TO, AMOUNT)
+        transaction_hash = await upow.send_transaction(utils_instance, KEY, TO, AMOUNT)
         print("Transaction hash:", transaction_hash)
     except Exception as e:
         print("Failed to send transaction:", str(e))
@@ -47,11 +51,11 @@ Stake or unstake an amount on the blockchain.
 
 ```python
 async def stake_transaction():
-    transaction_hash = await upow.stake_transaction(KEY, AMOUNT)
+    transaction_hash = await upow.stake_transaction(utils_instance, KEY, AMOUNT)
     print("Transaction hash:", transaction_hash)
 
 async def unstake_transaction():
-    transaction_hash = await upow.unstake_transaction(KEY)
+    transaction_hash = await upow.unstake_transaction(utils_instance, KEY)
     print("Transaction hash:", transaction_hash)
 ```
 
@@ -61,11 +65,11 @@ Register or deregister an inode on the blockchain.
 
 ```python
 async def register_inode_transaction():
-    transaction_hash = await upow.register_inode_transaction(KEY)
+    transaction_hash = await upow.register_inode_transaction(utils_instance, KEY)
     print("Transaction hash:", transaction_hash)
 
 async def deregister_inode_transaction():
-    transaction_hash = await upow.deregister_inode_transaction(KEY)
+    transaction_hash = await upow.deregister_inode_transaction(utils_instance, KEY)
     print("Transaction hash:", transaction_hash)
 ```
 
@@ -75,7 +79,7 @@ Register a validator on the blockchain.
 
 ```python
 async def register_validator_transaction():
-    transaction_hash = await upow.register_validator_transaction(KEY)
+    transaction_hash = await upow.register_validator_transaction(utils_instance, KEY)
     print("Transaction hash:", transaction_hash)
 ```
 
@@ -85,11 +89,11 @@ Vote for or revoke a vote for a validator using a specified range.
 
 ```python
 async def vote_transaction():
-    transaction_hash = await upow.vote_transaction(KEY, VOTING_RANGE, VOTE_TO)
+    transaction_hash = await upow.vote_transaction(utils_instance, KEY, VOTING_RANGE, VOTE_TO)
     print("Transaction hash:", transaction_hash)
 
 async def revoke_transaction():
-    transaction_hash = await upow.revoke_transaction(KEY, REVOKE_FROM)
+    transaction_hash = await upow.revoke_transaction(utils_instance, KEY, REVOKE_FROM)
     print("Transaction hash:", transaction_hash)
 ```
 

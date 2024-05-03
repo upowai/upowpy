@@ -14,10 +14,14 @@ from ..upow_transactions.transaction_output import TransactionOutput
 
 
 class Utils:
-    NODE_URL = "https://api.upow.ai"
-
-    def __init__(self) -> None:
+    def __init__(self, node_url=None):
+        self.NODE_URL = node_url
         self.repo = WalletRepository(self.NODE_URL)
+
+    def set_node_url(self, new_url: str):
+        if new_url != self.NODE_URL:
+            self.NODE_URL = new_url
+            self.repo = WalletRepository(self.NODE_URL)
 
     def get_balance_info(self, address: str):
         result = self.repo.get_balance_info(address)
