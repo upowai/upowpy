@@ -2,6 +2,7 @@ import logging
 import requests
 from .upow_transactions.helpers import sha256, string_to_bytes
 from .utils.utils import Utils
+import decimal
 
 wallet_utils: Utils = Utils()
 
@@ -150,4 +151,39 @@ async def revoke_transaction(wallet_utils: Utils, private_key_hex, revoke_from):
             raise Exception(error_message)
     except Exception as e:
 
+        raise
+
+
+async def get_balance(wallet_utils, address: str):
+    try:
+        balance_info = wallet_utils.get_balance_info(address)
+        formatted_total_balance = f"Total Balance: {balance_info[0]}"
+        formatted_stake_balance = f"Staked Balance: {balance_info[2]}"
+
+        balance_details = [formatted_total_balance, formatted_stake_balance]
+
+        if balance_info[1] != decimal.Decimal("0"):
+            formatted_pending_balance = f"Pending Incoming Balance: {balance_info[1]}"
+            balance_details.append(formatted_pending_balance)
+
+        if balance_info[3] != decimal.Decimal("0"):
+            formatted_pending_stake_balance = (
+                f"Pending Staked Balance: {balance_info[3]}"
+            )
+            balance_details.append(formatted_pending_stake_balance)
+
+        if balance_info[4]:
+            balance_details.append("Balance is syncing...")
+
+        return "\n".join(balance_details)
+
+    except Exception as e:
+        raise
+
+
+async def find_tx(wallet_utils: Utils, hash: str):
+    try:
+        balance_info = wallet_utils.get_tx(hash)
+        return balance_info
+    except Exception as e:
         raise

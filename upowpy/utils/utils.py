@@ -27,6 +27,10 @@ class Utils:
         result = self.repo.get_balance_info(address)
         return result
 
+    def get_tx(self, hash: str):
+        result = self.repo.get_transaction(hash)
+        return result
+
     async def create_transaction(
         self,
         private_key,

@@ -8,6 +8,8 @@ from .push import (
     register_validator_transaction,
     vote_transaction,
     revoke_transaction,
+    get_balance,
+    find_tx,
 )
 
 __all__ = [
@@ -19,4 +21,6 @@ __all__ = [
     "register_validator_transaction",
     "vote_transaction",
     "revoke_transaction",
+    "get_balance",
+    "find_tx",
 ]

@@ -34,6 +34,8 @@ VOTE_TO = "wallet_address"
 REVOKE_FROM = "wallet_address"
 AMOUNT = "1"
 VOTING_RANGE = "10"
+WALLET = "wallet_address"
+HASH = "tx_hash"
 
 async def send_transaction():
     try:
@@ -97,6 +99,26 @@ async def revoke_transaction():
     print("Transaction hash:", transaction_hash)
 ```
 
+#### find_balance and find_tx
+
+Find balance using wallet_address and find tx info using tx_hash.
+
+```python
+async def find_balance(WALLET):
+    try:
+        transaction_hash = await upow.get_balance(utils_instance, WALLET)
+        print("Balance:", transaction_hash)
+    except Exception as e:
+        print("Failed to find_balance:", str(e))
+
+async def find_tx(HASH):
+    try:
+        transaction_hash = await upow.find_tx(utils_instance, HASH)
+        print("tx:", transaction_hash)
+    except Exception as e:
+        print("Failed to find tx:", str(e))
+```
+
 ### Running the Code
 
 You can run the asynchronous functions using the asyncio library.
@@ -114,6 +136,8 @@ async def main():
     # await register_validator_transaction()
     # await vote_transaction()
     # await revoke_transaction()
+    # await find_balance(WALLET)
+    # await find_tx(HASH)
 
 asyncio.run(main())
 ```

@@ -46,6 +46,13 @@ class WalletRepository:
         result = request.json()["result"]
         return result
 
+    def get_transaction(self, tx_hash: str):
+        url = f"{self.node_url}/get_transaction?tx_hash={tx_hash}&verify=false"
+        request = requests.get(url)
+        request.raise_for_status()
+        result = request.json()["result"]
+        return result
+
     def get_validators_info(self, inode: str = None):
         params = {"inode": inode} if inode else {}
         request = requests.get(f"{self.node_url}/get_validators_info", params)
