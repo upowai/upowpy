@@ -1,6 +1,11 @@
 import logging
 import requests
-from .upow_transactions.helpers import sha256, string_to_bytes
+from .upow_transactions.helpers import (
+    sha256,
+    string_to_bytes,
+    point_to_string,
+    string_to_point,
+)
 from .utils.utils import Utils
 import decimal
 
@@ -185,5 +190,21 @@ async def find_tx(wallet_utils: Utils, hash: str):
     try:
         balance_info = wallet_utils.get_tx(hash)
         return balance_info
+    except Exception as e:
+        raise
+
+
+def publickey_to_address(pointx):
+    try:
+        address = point_to_string(pointx)
+        return address
+    except Exception as e:
+        raise
+
+
+def address_to_publickey(pointx):
+    try:
+        address = string_to_point(pointx)
+        return address
     except Exception as e:
         raise

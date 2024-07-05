@@ -10,6 +10,8 @@ from .push import (
     revoke_transaction,
     get_balance,
     find_tx,
+    publickey_to_address,
+    address_to_publickey,
 )
 
 __all__ = [
@@ -23,4 +25,6 @@ __all__ = [
     "revoke_transaction",
     "get_balance",
     "find_tx",
+    "publickey_to_address",
+    "address_to_publickey",
 ]

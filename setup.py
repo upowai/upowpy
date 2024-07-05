@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="upowpy",
-    version="1.0.7",
+    version="1.0.8",
     author="upow",
     author_email="contact@upow.ai",
     description="upowpy is a Python library for interacting with uPow blockchain transactions, including sending funds, staking, voting, and managing nodes and validators on the blockchain",
